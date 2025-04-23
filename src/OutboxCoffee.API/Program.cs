@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OutboxCoffee.Application.Interfaces;
 using OutboxCoffee.Application.Services;
@@ -20,16 +21,28 @@ public class Program
         builder.Services.AddScoped<IOutboxRepository, OutboxRepository>();
         builder.Services.AddScoped<IOrderService, OrderService>();
 
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
         builder.Services.AddSingleton<IEventPublisher>(sp =>
             new EventPublisher("rabbitmq", "coffee.exchange"));
 
         var app = builder.Build();
 
-        app.MapPost("/orders", async (OrderService service, CoffeeOrderRequest request) =>
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.MapPost("/orders", async ([FromServices] OrderService service, [FromBody] CoffeeOrderRequest request) =>
         {
             await service.CreateOrderAsync(request.CustomerName, request.CoffeeType);
             return Results.Accepted();
-        });
+        })
+         .WithName("CreateOrder")
+         .WithTags("Orders");
+
 
         app.Run();
     }
