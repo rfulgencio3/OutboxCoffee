@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{127749FF-E10F-495C-BB3C-5FD5F17E775B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxCoffee.Core", "src\OutboxCoffee.Core\OutboxCoffee.Core.csproj", "{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxCoffee.Application", "src\OutboxCoffee.Application\OutboxCoffee.Application.csproj", "{E57834B8-E7E0-4492-97FE-2FAA396A6C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxCoffee.Infrastructure", "src\OutboxCoffee.Infrastructure\OutboxCoffee.Infrastructure.csproj", "{8760DAB0-547A-428E-BCE5-941007D9F9CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutboxCoffee.Worker", "src\OutboxCoffee.Worker\OutboxCoffee.Worker.csproj", "{1E22E6DD-4FD0-405E-B124-0350D4C4EF42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E57834B8-E7E0-4492-97FE-2FAA396A6C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E57834B8-E7E0-4492-97FE-2FAA396A6C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E57834B8-E7E0-4492-97FE-2FAA396A6C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E57834B8-E7E0-4492-97FE-2FAA396A6C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8760DAB0-547A-428E-BCE5-941007D9F9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8760DAB0-547A-428E-BCE5-941007D9F9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8760DAB0-547A-428E-BCE5-941007D9F9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8760DAB0-547A-428E-BCE5-941007D9F9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E22E6DD-4FD0-405E-B124-0350D4C4EF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E22E6DD-4FD0-405E-B124-0350D4C4EF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E22E6DD-4FD0-405E-B124-0350D4C4EF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E22E6DD-4FD0-405E-B124-0350D4C4EF42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3244CFE-69F5-4C55-B2B2-8CCB1A41FD38} = {127749FF-E10F-495C-BB3C-5FD5F17E775B}
+		{E57834B8-E7E0-4492-97FE-2FAA396A6C1B} = {127749FF-E10F-495C-BB3C-5FD5F17E775B}
+		{8760DAB0-547A-428E-BCE5-941007D9F9CA} = {127749FF-E10F-495C-BB3C-5FD5F17E775B}
+		{1E22E6DD-4FD0-405E-B124-0350D4C4EF42} = {127749FF-E10F-495C-BB3C-5FD5F17E775B}
+	EndGlobalSection
+EndGlobal
