@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: outbox_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: outboxcoffee
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: outbox_rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"     # Porta de comunicação AMQP
+      - "15672:15672"   # Painel web
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: outbox_pgadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@outbox.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+
+volumes:
+  pgdata:
