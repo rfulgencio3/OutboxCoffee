@@ -25,7 +25,7 @@ public class Program
 
         var app = builder.Build();
 
-        app.MapPost("/coffee-orders", async (OrderService service, CoffeeOrderRequest request) =>
+        app.MapPost("/orders", async (OrderService service, CoffeeOrderRequest request) =>
         {
             await service.CreateOrderAsync(request.CustomerName, request.CoffeeType);
             return Results.Accepted();
