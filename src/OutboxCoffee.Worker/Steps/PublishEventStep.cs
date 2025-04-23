@@ -7,19 +7,15 @@ namespace OutboxCoffee.Worker.Steps;
 public class PublishEventStep : StepBody
 {
     private readonly IEventPublisher _publisher;
-    private readonly IOutboxRepository _repository;
 
-    public PublishEventStep(IEventPublisher publisher, IOutboxRepository repository)
+    public PublishEventStep(IEventPublisher publisher)
     {
         _publisher = publisher;
-        _repository = repository;
     }
 
     public override ExecutionResult Run(IStepExecutionContext context)
     {
-        var messages = _repository.GetUnprocessedMessagesAsync().Result;
-
-        foreach (var msg in messages)
+        foreach (var msg in ReadOutboxStep.Messages)
         {
             _publisher.PublishAsync(msg.Type, msg.Payload).Wait();
         }

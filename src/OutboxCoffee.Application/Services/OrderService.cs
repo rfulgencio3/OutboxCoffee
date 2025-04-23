@@ -1,6 +1,7 @@
 ﻿using OutboxCoffee.Application.Interfaces;
 using OutboxCoffee.Core.Domain.Entities;
 using OutboxCoffee.Core.Domain.Interfaces;
+using OutboxCoffee.Infrastructure.Repositories;
 using System.Text.Json;
 
 namespace OutboxCoffee.Application.Services;
@@ -26,5 +27,7 @@ public class OrderService : IOrderService
             Type = "OrderCreated",
             Payload = JsonSerializer.Serialize(order)
         };
+
+        await _outboxRepository.AddAsync(orderCreatedMessage);
     }
 }

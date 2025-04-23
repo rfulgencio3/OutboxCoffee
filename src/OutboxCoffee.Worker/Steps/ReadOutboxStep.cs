@@ -8,7 +8,9 @@ namespace OutboxCoffee.Worker.Steps;
 public class ReadOutboxStep : StepBody
 {
     private readonly IOutboxRepository _repository;
-    public List<OutboxMessage> Messages { get; private set; } = new();
+    private static readonly List<OutboxMessage> outboxMessages = [];
+
+    public static List<OutboxMessage> Messages { get; private set; } = outboxMessages;
 
     public ReadOutboxStep(IOutboxRepository repository)
     {

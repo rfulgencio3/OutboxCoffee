@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OutboxCoffee.Core\OutboxCoffee.Core.csproj" />
+    <ProjectReference Include="..\OutboxCoffee.Infrastructure\OutboxCoffee.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
