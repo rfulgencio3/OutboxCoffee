@@ -1,11 +1,8 @@
 ﻿{
   "profiles": {
-    "OutboxCoffee.API": {
+    "OutboxCoffee.Worker": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ConnectionStrings__DefaultConnection": "Host=localhost;Database=outboxcoffee;Username=dev;Password=dev123"
