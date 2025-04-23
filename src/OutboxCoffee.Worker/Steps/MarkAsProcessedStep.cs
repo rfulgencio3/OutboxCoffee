@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using OutboxCoffee.Core.Domain.Interfaces;
+﻿using OutboxCoffee.Core.Domain.Interfaces;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
 
@@ -16,9 +15,7 @@ public class MarkAsProcessedStep : StepBody
 
     public override ExecutionResult Run(IStepExecutionContext context)
     {
-        var messages = _repository.GetUnprocessedMessagesAsync().Result;
-
-        foreach (var msg in messages)
+        foreach (var msg in ReadOutboxStep.Messages)
         {
             _repository.MarkAsProcessedAsync(msg.Id).Wait();
         }

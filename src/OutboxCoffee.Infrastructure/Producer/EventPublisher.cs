@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using OutboxCoffee.Core.Domain.Interfaces;
+﻿using OutboxCoffee.Core.Domain.Interfaces;
 using RabbitMQ.Client;
 using System.Text;
+using IModel = RabbitMQ.Client.IModel;
 
 namespace OutboxCoffee.Infrastructure.Producer;
 
