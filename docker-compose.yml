@@ -1,15 +1,14 @@
 version: "3.9"
 
 services:
-
   postgres:
     image: postgres:15
     container_name: outbox_postgres
     restart: always
     environment:
-      POSTGRES_DB: outboxcoffee
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: dev123
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -20,11 +19,11 @@ services:
     container_name: outbox_rabbitmq
     restart: always
     ports:
-      - "5672:5672"     # Porta de comunicação AMQP
-      - "15672:15672"   # Painel web
+      - "5672:5672"
+      - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
 
   pgadmin:
     image: dpage/pgadmin4
@@ -33,8 +32,33 @@ services:
     ports:
       - "8080:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@outbox.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+
+  api:
+    build:
+      context: .
+      dockerfile: src/OutboxCoffee.API/Dockerfile
+    container_name: outbox_api
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=${DEFAULT_CONNECTION}
+
+  worker:
+    build:
+      context: .
+      dockerfile: src/OutboxCoffee.Worker/Dockerfile
+    container_name: outbox_worker
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      - ConnectionStrings__DefaultConnection=${DEFAULT_CONNECTION}
 
 volumes:
   pgdata:

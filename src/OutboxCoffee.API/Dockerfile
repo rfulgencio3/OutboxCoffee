@@ -5,8 +5,8 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "OutboxCoffee.API/OutboxCoffee.API.csproj"
-RUN dotnet publish "OutboxCoffee.API/OutboxCoffee.API.csproj" -c Release -o /app/publish
+RUN dotnet restore "src/OutboxCoffee.API/OutboxCoffee.API.csproj"
+RUN dotnet publish "src/OutboxCoffee.API/OutboxCoffee.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

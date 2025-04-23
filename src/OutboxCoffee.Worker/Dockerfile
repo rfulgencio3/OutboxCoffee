@@ -4,8 +4,8 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "OutboxCoffee.Worker/OutboxCoffee.Worker.csproj"
-RUN dotnet publish "OutboxCoffee.Worker/OutboxCoffee.Worker.csproj" -c Release -o /app/publish
+RUN dotnet restore "src/OutboxCoffee.Worker/OutboxCoffee.Worker.csproj"
+RUN dotnet publish "src/OutboxCoffee.Worker/OutboxCoffee.Worker.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
