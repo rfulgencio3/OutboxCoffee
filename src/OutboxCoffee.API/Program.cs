@@ -7,7 +7,6 @@ using OutboxCoffee.Infrastructure.Persistence;
 using OutboxCoffee.Infrastructure.Producer;
 using OutboxCoffee.Infrastructure.Repositories;
 
-
 public class Program
 {
     public static void Main(string[] args)
@@ -16,6 +15,7 @@ public class Program
 
         builder.Services.AddDbContext<AppDbContext>(opt =>
             opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
         builder.Services.AddScoped<IOrderRepository, OrderRepository>();
         builder.Services.AddScoped<IOutboxRepository, OutboxRepository>();
@@ -28,6 +28,14 @@ public class Program
             new EventPublisher("rabbitmq", "coffee.exchange"));
 
         var app = builder.Build();
+
+        
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.Migrate();
+        }
 
         if (app.Environment.IsDevelopment())
         {
